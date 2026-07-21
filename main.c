@@ -301,18 +301,6 @@ void menuStatistiques()
     } while (choix != 0);
 }
 
-int main()
-{
-    initialiser_systeme();
-
-#ifdef _WIN32
-    system("mkdir DATABASE > nul 2>&1");
-    system("mkdir REPORTS\\DAILY > nul 2>&1");
-#else
-    system("mkdir -p DATABASE > /dev/null 2>&1");
-    system("mkdir -p REPORTS/DAILY > /dev/null 2>&1");
-#endif
-
 
 void menuRetoursPenalites()
    int choix;
@@ -371,6 +359,18 @@ void menuRetoursPenalites()
 }
 
 
+int main()
+{
+    initialiser_systeme();
+
+#ifdef _WIN32
+    system("mkdir DATABASE > nul 2>&1");
+    system("mkdir REPORTS\\DAILY > nul 2>&1");
+#else
+    system("mkdir -p DATABASE > /dev/null 2>&1");
+    system("mkdir -p REPORTS/DAILY > /dev/null 2>&1");
+#endif
+    
     int choix;
     do
     {
