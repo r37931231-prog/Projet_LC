@@ -314,7 +314,7 @@ int main()
 #endif
 
 
-void menuRetoursPenalites();
+void menuRetoursPenalites()
    int choix;
 
     do {
