@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "books.h"
 #include "loans.h"
+#include "categorie.h"
+#include "auteur.h"
 
 void menuLivres()
 {
@@ -103,16 +105,62 @@ void menuEmprunts()
     }while(choix != 0);
 }
 
+void menuCategories() {
+    int choix;
+    do {
+        printf("\n===== GESTION DES CATEGORIES =====\n");
+        printf("1. Ajouter une categorie\n");
+        printf("2. Afficher toutes les categories\n");
+        printf("3. Supprimer une categorie\n");
+        printf("0. Retour au menu principal\n");
+        printf("Votre choix : ");
+        scanf("%d",&choix);
+        getchar();
+
+        switch (choix) {
+            case 1: ajouterCategorie(); break;
+            case 2: afficherCategories(); break;
+            case 3: supprimerCategorie(); break;
+            case 0: printf("Retour...\n"); break;
+            default: printf("Choix invalide.\n");
+    }
+    } while (choix != 0 && choix > 3);
+}
+
+void menuAuteurs() {
+    int choix;
+    do {
+        printf("\n===== GESTION DES AUTEURS =====\n");
+        printf("1. Ajouter un auteur\n");
+        printf("2. Afficher tous les auteurs\n");
+        printf("3. Supprimer un auteur\n");
+        printf("0. Retour au menu principal\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+        getchar();
+
+    switch (choix) {
+        case 1: ajouterAuteur(); break;
+        case 2: afficherAuteurs(); break;
+        case 3: supprimerAuteur(); break;
+        case 0: printf("Retour...\n"); break;
+        default: printf("Choix invalide.\n");
+    }
+    } while (choix != 0 && choix > 3);
+}
+
+
 int main()
 {
 
     int choix;
-
     do
     {
         printf("\n===== SYSTEME DE GESTION BIBLIOTHEQUE =====\n");
         printf("1. Gestion des livres\n");
         printf("2. Gestion des emprunts\n");
+        printf("3. Gestion des auteurs\n");
+        printf("4. Gestion des categories\n");
         printf("0. Quitter\n");
 
         printf("Votre choix : ");
@@ -127,6 +175,14 @@ int main()
 
             case 2:
                 menuEmprunts();
+                break;
+
+            case 3:
+                menuAuteurs();
+                break;
+
+            case 4:
+                menuCategories();
                 break;
 
             case 0:

@@ -29,8 +29,22 @@ void ajouterLivre(void)
     printf("Entrer l'id de l'auteur : ");
     scanf("%d",&livre.idAuteur);
 
+    if(!auteurExiste(livre.idAuteur))
+    {
+        printf("Erreur : auteur introuvable.\n");
+        fclose(f);
+        return;
+    }
+
     printf("Entrer l'id de la categorie : ");
     scanf("%d",&livre.idCategorie);
+
+    if(!categorieExiste(livre.idCategorie))
+    {
+        printf("Erreur : categorie introuvable.\n");
+        fclose(f);
+        return;
+    }
 
     printf("Entrer l'editeur : ");
     scanf(" %49[^\n]", livre.editeur);
@@ -105,9 +119,7 @@ void afficherLivres(void)
     }
 
     fclose(f);
-
 }
-
 
 void rechercherLivre(void)
 {
@@ -248,7 +260,7 @@ void modifierLivre(void)
 }
 
 
-void supprimerLivre()
+void supprimerLivre(void)
 {
     Livre livre;
     FILE *f, *temp;
@@ -281,7 +293,7 @@ void supprimerLivre()
         if(livre.id == id)
         {
             trouve = 1;
-            continue;   // on ne copie pas ce livre
+            continue;
         }
 
         fwrite(&livre, sizeof(Livre), 1, temp);
@@ -293,9 +305,7 @@ void supprimerLivre()
 
 
     remove("BOOKS.dat");
-
     rename("TEMP.dat", "BOOKS.dat");
-
 
     if(trouve)
     {

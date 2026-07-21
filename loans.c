@@ -32,10 +32,6 @@ int nombreEmpruntsUtilisateur(int idUtilisateur)
     while(fread(&emprunt, sizeof(Emprunt), 1, f))
     {
 
-        printf("Utilisateur=%d Etat=%d\n",
-           emprunt.idUtilisateur,
-           emprunt.etat);
-
         if(emprunt.idUtilisateur == idUtilisateur &&
            emprunt.etat == 0){
 
@@ -44,12 +40,8 @@ int nombreEmpruntsUtilisateur(int idUtilisateur)
     }
 
     fclose(f);
-
-    printf("Compteur = %d\n", compteur);
-
     return compteur;
 }
-
 
 void ajouterEmprunt()
 {
@@ -101,7 +93,7 @@ void ajouterEmprunt()
         return;
     }
 
-    printf("Etat (0 = en cours, 1 = retourne) : ");
+    printf("Etat (0 = en cours, 1 = retourne, 2=retard) : ");
     scanf("%d", &emprunt.etat);
 
     fwrite(&emprunt, sizeof(Emprunt), 1, f);
@@ -178,8 +170,12 @@ void rechercherEmprunt()
                 printf("Etat : En cours\n");
             }
             else
+                if(emprunt.etat == 1)
             {
                 printf("Etat : Retourne\n");
+            }
+            else{
+                printf("Etat : Retard\n");
             }
 
             trouve = 1;
@@ -293,7 +289,6 @@ void supprimerEmprunt()
             continue;
         }
 
-
         fwrite(&emprunt, sizeof(Emprunt), 1, temp);
     }
 
@@ -301,7 +296,6 @@ void supprimerEmprunt()
     fclose(temp);
 
     remove("LOANS.dat");
-
     rename("TEMP.dat", "LOANS.dat");
 
 

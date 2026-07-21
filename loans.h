@@ -21,7 +21,6 @@ void supprimerEmprunt(void);
 void genererNumeroEmprunt(char numero[]);
 int nombreEmpruntsUtilisateur(int idUtilisateur);
 
-
 #endif
 
 

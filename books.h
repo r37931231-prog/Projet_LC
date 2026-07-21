@@ -26,5 +26,7 @@ void rechercherLivre(void);
 void modifierLivre(void);
 void supprimerLivre(void);
 int genererIdLivre(void);
+int auteurExiste(int idAuteur);
+int categorieExiste(int idCategorie);
 
 #endif
