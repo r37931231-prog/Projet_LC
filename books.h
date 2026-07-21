@@ -28,5 +28,6 @@ void supprimerLivre(void);
 int genererIdLivre(void);
 int auteurExiste(int idAuteur);
 int categorieExiste(int idCategorie);
+int isbnExiste(char isbn[]);
 
 #endif

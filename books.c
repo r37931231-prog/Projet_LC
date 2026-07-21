@@ -3,6 +3,31 @@
 #include <string.h>
 #include "books.h"
 
+int isbnExiste(char isbn[])
+{
+    FILE *f;
+    Livre livre;
+
+    f = fopen("BOOKS.dat", "rb");
+
+    if(f == NULL)
+    {
+        return 0;
+    }
+
+    while(fread(&livre, sizeof(Livre), 1, f))
+    {
+        if(strcmp(livre.isbn, isbn) == 0)
+        {
+            fclose(f);
+            return 1;
+        }
+    }
+
+    fclose(f);
+    return 0;
+}
+
 void ajouterLivre(void)
 {
     Livre livre;
@@ -18,8 +43,17 @@ void ajouterLivre(void)
     livre.id = genererIdLivre();
     printf("ID genere : %d\n", livre.id);
 
-    printf("ISBN : ");
-    scanf("%s", livre.isbn);
+    do
+    {
+        printf("ISBN : ");
+        scanf("%19s", livre.isbn);
+
+        if(isbnExiste(livre.isbn))
+        {
+            printf("\nErreur : cet ISBN existe deja.\n");
+        }
+
+    }while(isbnExiste(livre.isbn));
 
     getchar();
 
