@@ -383,7 +383,7 @@ int main()
         printf("5. Gestion des emprunts\n");
         printf("6. Gestion des reservations\n");
         printf("7. Statistiques & Rapports\n");
-        printf("8. Gestion des retours & penalites\n")
+        printf("8. Gestion des retours & penalites\n");
         printf("0. Quitter\n");
 
         printf("Votre choix : ");
