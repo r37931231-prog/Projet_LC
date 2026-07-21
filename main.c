@@ -8,6 +8,8 @@
 #include "auteur.h"
 #include "reservations.h"
 #include "statistiques.h"
+#include "retours.h"
+#include "penalites.h"
 
 void menuUtilisateurs()
 {
@@ -311,6 +313,64 @@ int main()
     system("mkdir -p REPORTS/DAILY > /dev/null 2>&1");
 #endif
 
+
+   int choix;
+
+    do {
+        printf("\n==== GESTIONS DES  RETOURS & PENALITES ====\n");
+        printf("1. Enregistrer un retour\n");
+        printf("2. Calculer une penalite\n");
+        printf("3. Quitter\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+
+        if (choix == 1) {
+            int idRetour, idUtilisateur;
+            char idEmprunt[20];
+            char datePrevue[11];
+            char dateRetour[11];
+
+            printf("ID du retour : ");
+            scanf("%d", &idRetour);
+
+            printf("Numero de l'emprunt : ");
+            scanf("%s", idEmprunt);
+
+            printf("ID de l'utilisateur : ");
+            scanf("%d", &idUtilisateur);
+
+            printf("Date prevue de retour (AAAA-MM-JJ) : ");
+            scanf("%s", datePrevue);
+
+            printf("Date reelle de retour (AAAA-MM-JJ) : ");
+            scanf("%s", dateRetour);
+
+            traiterRetour(idRetour, idUtilisateur, idEmprunt, datePrevue, dateRetour);
+        }
+        else if (choix == 2) {
+            char datePrevue[11];
+            char dateRetour[11];
+
+            printf("Date prevue de retour (AAAA-MM-JJ) : ");
+            scanf("%s", datePrevue);
+
+            printf("Date reelle de retour (AAAA-MM-JJ) : ");
+            scanf("%s", dateRetour);
+
+            int retard = calculerJoursRetard(datePrevue, dateRetour);
+            float penalite = calculerPenalite(retard);
+
+            printf("Retard : %d jour(s)\n", retard);
+            printf("Penalite estimee : %.2f FCFA\n", penalite);
+        }
+
+    } while (choix != 3);
+
+    printf("Au revoir !\n");
+    return 0;
+}
+
+
     int choix;
     do
     {
@@ -322,6 +382,7 @@ int main()
         printf("5. Gestion des emprunts\n");
         printf("6. Gestion des reservations\n");
         printf("7. Statistiques & Rapports\n");
+        printf("8. Gestion des retours & penalites\n")
         printf("0. Quitter\n");
 
         printf("Votre choix : ");
@@ -356,6 +417,9 @@ int main()
         case 7:
             menuStatistiques();
             break;
+
+        case 8:
+             menueRetoursPenalites();
 
         case 0:
             printf("Au revoir !\n");
