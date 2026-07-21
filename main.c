@@ -303,6 +303,7 @@ void menuStatistiques()
 
 
 void menuRetoursPenalites()
+{
    int choix;
 
     do {
