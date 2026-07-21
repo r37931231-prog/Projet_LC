@@ -13,5 +13,6 @@ typedef struct {
 int calculerJoursRetard(char datePrevue[], char dateRetour[]);
 void sauvegarderRetour(Retour r);
 void traiterRetour(int idRetour, int idUtilisateur,  char idEmprunt[], char datePrevue[], char dateRetour[]);
+void menuRetoursPenalites();
 
 #endif
