@@ -8,6 +8,10 @@
 #include "auteur.h"
 #include "reservations.h"
 #include "statistiques.h"
+#include <stdio.h>
+#include "retours.h"
+#include "penalites.h"
+
 
 void menuUtilisateurs()
 {
@@ -367,5 +371,61 @@ int main()
 
     } while (choix != 0);
 
+    return 0;
+}
+
+   int choix;
+
+    do {
+        printf("\n==== GESTIONS DES  RETOURS & PENALITES ====\n");
+        printf("1. Enregistrer un retour\n");
+        printf("2. Calculer une penalite\n");
+        printf("3. Quitter\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+
+        if (choix == 1) {
+            int idRetour, idUtilisateur;
+            char idEmprunt[20];
+            char datePrevue[11];
+            char dateRetour[11];
+
+            printf("ID du retour : ");
+            scanf("%d", &idRetour);
+
+            printf("Numero de l'emprunt : ");
+            scanf("%s", idEmprunt);
+
+            printf("ID de l'utilisateur : ");
+            scanf("%d", &idUtilisateur);
+
+            printf("Date prevue de retour (AAAA-MM-JJ) : ");
+            scanf("%s", datePrevue);
+
+            printf("Date reelle de retour (AAAA-MM-JJ) : ");
+            scanf("%s", dateRetour);
+
+            traiterRetour(idRetour, idUtilisateur, idEmprunt, datePrevue, dateRetour);
+        }
+        else if (choix == 2) {
+            char datePrevue[11];
+            char dateRetour[11];
+
+            printf("Date prevue de retour (AAAA-MM-JJ) : ");
+            scanf("%s", datePrevue);
+
+            printf("Date reelle de retour (AAAA-MM-JJ) : ");
+            scanf("%s", dateRetour);
+
+            int retard = calculerJoursRetard(datePrevue, dateRetour);
+            float penalite = calculerPenalite(retard);
+
+            printf("Retard : %d jour(s)\n", retard);
+            printf("Penalite estimee : %.2f FCFA\n", penalite);
+        }
+
+    } while (choix != 3);
+
+    printf("Au revoir !\n");
     return 0;
 }
