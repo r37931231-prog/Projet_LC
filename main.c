@@ -314,13 +314,14 @@ int main()
 #endif
 
 
+void menuRetoursPenalites();
    int choix;
 
     do {
         printf("\n==== GESTIONS DES  RETOURS & PENALITES ====\n");
         printf("1. Enregistrer un retour\n");
         printf("2. Calculer une penalite\n");
-        printf("3. Quitter\n");
+        printf("3. Retour au menu principal\n");
         printf("Votre choix : ");
         scanf("%d", &choix);
 
@@ -366,8 +367,7 @@ int main()
 
     } while (choix != 3);
 
-    printf("Au revoir !\n");
-    return 0;
+   
 }
 
 
@@ -419,7 +419,7 @@ int main()
             break;
 
         case 8:
-             menueRetoursPenalites();
+             menuRetoursPenalites();
 
         case 0:
             printf("Au revoir !\n");
