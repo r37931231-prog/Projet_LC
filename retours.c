@@ -53,5 +53,5 @@ void traiterRetour(int idRetour, int idUtilisateur, char idEmprunt[], char dateP
         sauvegarderPenalite(p);
     }
 
-    printf("Retour enregistre. Retard: %d jour(s). Penalite: %.2f FCFA\n", retard, penalite);
+    printf("Retour enregistre. Retard: %d jour(s).", retard);
 }
